@@ -14,11 +14,11 @@ TOKEN='ODkyNDgxODAyNzg1MTQ4OTY4.YVNicw.G1hxVzzsIYnrNBKDWtGSF-RGm2k'
 bot = commands.Bot(command_prefix=';', help_command=None)
 
 def helpGen():
-    description = "`ineedhelp` : you just did it\n"
+    description = "`help` : you just did it\n"
     return description
 
 def helpFootball():
-    description = "`news` : gives news related to football\n"
+    description = "`news` : gives news related to football from all sources\n \t- `news list` : gives list of all available sources\n \t- `news [source]` : gives news from `[source]`"
 
     return description
 
@@ -52,17 +52,16 @@ sourcesdict = {'skysports': ["Sky Sports","https://seekvectorlogo.com/wp-content
 #                 'bbc': ["BBC News","https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png",bbcSource]} 
 # 
 # the scrapers will also be added to sourcesdict and will be used like `sourcelist[2]()`
+sourcenames = ""
+for key in sourcesdict:
+    sourcenames += f'**{sourcesdict[key][0]}** : `{key}`\n'
 
 @bot.command()
 async def news(ctx, arg = 'null'):
     if(arg == "list"):
-        sourcenames = ""
-        for key in sourcesdict:
-            sourcenames += f'**{sourcesdict[key][0]}** : `{key}`\n'
-        
         embed=discord.Embed(title="List of Sources", description = sourcenames, color=0xFF5733)
         embed.set_author(name="FootBot", url="https://www.youtube.com/watch?v=dQw4w9WgXcQ", icon_url="https://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-soccer.png&w=288&h=288&transparent=true")
-        embed.set_thumbnail(url="https://i.pinimg.com/originals/3b/39/c9/3b39c9ea1f56edc75bdb093c1400e7a8.png")
+        embed.set_thumbnail(url="https://i.pinimg.com/originals/8f/23/bd/8f23bd594b6ad1be9fbe03a67c892f67.png")
         await ctx.send(embed=embed)
     elif(arg == "null" ):
         for key in sourcesdict:
@@ -73,19 +72,20 @@ async def news(ctx, arg = 'null'):
         except:
             await ctx.send(f'Error: cannot recognize source: {arg}\n')
 
+commandGroups = {'General':helpGen, 'Football': helpFootball, 'Emojis & Gifs' : helpGif}
+
 @bot.command()
 async def help(ctx, arg = 'null'):
     if(arg == "noob"):
         await ctx.send("Shut up you are noob")
     elif(arg == "null" ):
-        embed=discord.Embed(title="**prefix : `;`**", description = "**A list of commands you can use**\n", color=0xFF5733)
+        embed=discord.Embed(title="**prefix : `;`** (semicolon)", description = "**A list of commands you can use**\n", color=0xFF5733)
         embed.set_author(name="FootBot", url="https://www.youtube.com/watch?v=dQw4w9WgXcQ", icon_url="https://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-soccer.png&w=288&h=288&transparent=true")
         embed.set_thumbnail(url="https://media.nesta.org.uk/images/good_help_bad_help.max-1200x600.png")
-        embed.add_field(name="General", value=helpGen(), inline=False)
         embed.set_image(url="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2018/05/how-to-ask-for-help.jpg")
-        embed.add_field(name="Football", value=helpFootball(), inline=False)
-        embed.add_field(name="Emojis & Gifs", value=helpGif(), inline=True)
-        # embed.set_footer(text="sussy baka amogus uwu")
+        for key in commandGroups:
+            embed.add_field(name=key, value=commandGroups[key](), inline=False)
+        embed.set_footer(text="sussy baka amogus uwu")
         await ctx.send(embed=embed)
     else:
         await ctx.send("```ARM\nError : invalid argument```")
