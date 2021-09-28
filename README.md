@@ -6,11 +6,15 @@ Discord bot for football related info
 ```
 git clone git@github.com:preraks116/Footbot.git && cd Footbot
 ```
-2. Create a virtual env
+2. Create a virtual env  
+Install `virtualenv` if missing
+```
+pip install virtualenv
+```
 ```
 virtualenv env
 ```
-3. Activate env and install dependencies
+3. Activate env 
 ```
 source env/bin/activate
 ```
