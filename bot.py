@@ -20,7 +20,10 @@ async def ineedhelp(ctx, arg):
     if(arg == "noob"):
         await ctx.send("Shut up you are noob")
     else:
-        await ctx.send(arg)
+        with open('README.md', 'r') as f:
+            data = f.read()
+
+        await ctx.send('```md\n' + data + '```')
 
 @bot.command()
 async def sk(ctx):
@@ -32,5 +35,8 @@ async def kk(ctx):
     await ctx.send("https://cdn.discordapp.com/attachments/814422269002121266/892488294292656129/60a9a274-f0fc-4588-a40d-7792934662a8.png")
     
 
+@bot.command()
+async def kek(ctx):
+    await ctx.send("https://tenor.com/view/kekwtf-gif-18599263")
 
 bot.run('ODkyNDgxODAyNzg1MTQ4OTY4.YVNicw.G1hxVzzsIYnrNBKDWtGSF-RGm2k')
