@@ -20,8 +20,8 @@ class News(commands.Cog):
             },
             'bbc': {
                 "name" : "BBC News",
-                "logo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"
-                "scraper": bbc_getsource
+                "logo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png",
+                "scraper" : bbc_getsource
             }
         }
 
@@ -58,7 +58,7 @@ class News(commands.Cog):
             await ctx.send(embed=embed)
         elif(option == None ):
             for key in self.sourcesdict:
-                    await ctx.send(embed=self.source(key))
+                await ctx.send(embed=self.source(key))
         else:
             try:
                 await ctx.send(embed=self.source(option))
