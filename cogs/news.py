@@ -9,9 +9,16 @@ class News(commands.Cog):
     '''
     def __init__(self, bot):
         self.bot = bot  
-        self.sourcesdict = {'skysports': ["Sky Sports","https://seekvectorlogo.com/wp-content/uploads/2018/01/sky-sports-vector-logo.png"],
-                'bbc': ["BBC News","https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"]}
-
+        self.sourcesdict = {
+            'skysports': {
+                "Name" : "Sky Sports",
+                "Logo" : "https://seekvectorlogo.com/wp-content/uploads/2018/01/sky-sports-vector-logo.png"
+            },
+            'bbc': {
+                "Name" : "BBC News",
+                "Logo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"
+            }
+        }
     # a function to setup any general source
     def source(self,key):
         sourcelist = self.sourcesdict[key]
