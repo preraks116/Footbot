@@ -41,12 +41,11 @@ class News(commands.Cog):
             icon_url="https://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-soccer.png&w=288&h=288&transparent=true",
         )
         embed.set_thumbnail(url=source["logo"])
-        print(news)
         embed.set_image(url=news["img"])
         embed.add_field(
             name="Source", value=f"[Click Here]({news['link']})", inline=False
         )
-        embed.set_footer(text=news["datetime"])
+        if news.get("datetime"): embed.set_footer(text=news["datetime"])
         return embed
 
     @commands.command()
@@ -79,5 +78,6 @@ class News(commands.Cog):
         else:
             try:
                 await ctx.send(embed=self.source(option))
-            except:
+            except Exception as e:
+                print(e)
                 await ctx.send(f"Error: cannot recognize source: {option}\n")
