@@ -36,6 +36,7 @@ class News(commands.Cog):
         print(news)
         embed.set_image(url=news['img'])
         embed.add_field(name = "Source" ,value=f"[Click Here]({news['link']})", inline=False)
+        embed.set_footer(text=news['datetime'])
         return embed
 
 
