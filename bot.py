@@ -1,18 +1,23 @@
-import discord
+import os
 import logging
-from discord import activity
+
+import discord
+from dotenv import load_dotenv
 from discord.ext import commands
 from discord.file import File
 
-from cogs.news import News
 from cogs.emogif import EmoGifs
+from cogs.news import News
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
-TOKEN='ODkyNDgxODAyNzg1MTQ4OTY4.YVNicw.G1hxVzzsIYnrNBKDWtGSF-RGm2k'
+
+
+# load environment variables
+load_dotenv()
 
 bot = commands.Bot(command_prefix=';')
 
@@ -26,4 +31,4 @@ async def on_ready():
 bot.add_cog(News(bot))
 bot.add_cog(EmoGifs(bot))
 
-bot.run(TOKEN)
+bot.run(os.environ.get("TOKEN"))
