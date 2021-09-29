@@ -1,6 +1,7 @@
 from hashlib import new
 from typing import Optional
-from scrapers.news_getsource import skysports_getsource
+from scrapers.skysports_getsource import skysports_getsource
+from scrapers.bbc_getsource import bbc_getsource
 import discord
 import random
 from discord.ext import commands
@@ -20,6 +21,7 @@ class News(commands.Cog):
             'bbc': {
                 "name" : "BBC News",
                 "logo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"
+                "scraper": bbc_getsource
             }
         }
 
