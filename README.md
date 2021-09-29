@@ -18,7 +18,7 @@ Install `virtualenv` if missing
 
 `source env/bin/activate`
 
-4. Install required dependencies
+4. Install required dependencies  
 
 `pip install -r requirements.txt`
 5. Rename `.env.template` to `.env` and insert bot token in it 
